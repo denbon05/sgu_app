@@ -10,13 +10,13 @@
 ### Dev mode
 <b>Usage</b>
 <pre>
-$ git clone https://github.com/denbon05/sgu_app.git
-$ cd sgu_app
-$ make install
-$ make start-backend
-$ make start-frontend
+git clone https://github.com/denbon05/sgu_app.git
+cd sgu_app
+make install
+make start-backend
+make start-frontend
 // in browser follow http://0.0.0.0:3000/
-$ make seed-db // if you removed the administrator
+make seed-db // if you removed the administrator
 </pre>
 
 #### Login as admin
