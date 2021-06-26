@@ -1,0 +1,12 @@
+extends ../layouts/application.pug
+
+block header
+  = t('views.form.users.new.title')
+
+block content
+  +formFor()(action=route('users') method='post')
+    +input(user, 'nickname', errors)(type="text")
+    +input(user, 'password', errors)(type="text")
+    +input(user, 'email', errors)(type="text")
+    //- +checkbox(user, 'isAdmin')(type="checkbox")
+    +submit(user)(value=t('views.form.users.new.create'))

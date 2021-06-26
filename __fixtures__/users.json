@@ -1,0 +1,15 @@
+[
+  {
+    "nickname": "bob",
+    "email": "bob@marley.com",
+    "passwordDigest": "87c6374c24969f2af49433baa6d8b96e2bdb17a509b79049d2edb4fde98e4c46",
+    "id": 2
+  },
+  {
+    "nickname": "admin",
+    "email": "admin@gmain.com",
+    "passwordDigest": "312ac87e4ae0aefafcbc839dfa606bf8cbf9016b97d1d532e129b61d0a0f15c8",
+    "id": 1,
+    "isAdmin": 1
+  }
+]

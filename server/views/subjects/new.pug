@@ -1,0 +1,10 @@
+extends ../layouts/application.pug
+
+block header
+  = t('views.subjects.new.title')
+
+block content
+  +formFor()(action=route('createSubject') method='post')
+    +input(subject, 'name', errors)(type="text")
+    +input(subject, 'localization', errors)(type="text")
+    +submit(subject)(value=t('views.manage.submit'))

@@ -1,0 +1,24 @@
+extends ../layouts/application.pug
+
+block header 
+  = t('views.subjects.title')
+
+block content
+  a.nav-link(href=route('newSubject'))= t('views.subjects.create')
+  table.table.table-striped
+    thead
+      tr
+        th= t('views.subjects.id')
+        th= t('views.subjects.name')
+        th= t('views.subjects.localization')
+        th= t('views.subjects.creator')
+    tbody
+      each subject in subjects
+        tr
+          td= subject.id
+          td= subject.name
+          td= subject.localization
+          if subject.creator
+            td= subject.creator.nickname
+          else
+            td= t('views.subjects.nobody')

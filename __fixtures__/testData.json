@@ -1,0 +1,39 @@
+{
+  "users": {
+    "new": {
+      "nickname": "David",
+      "email": "david@bowie.com",
+      "password": "RLJvaIgPOnX5r03"
+    },
+    "existing": {
+      "nickname": "bob",
+      "email": "bob@marley.com",
+      "password": "O6AvLIQL1cbzrre",
+      "id": 2
+    },
+    "admin": {
+      "nickname": "admin",
+      "email": "admin@gmain.com",
+      "password": "3c1fd781053afcf86f",
+      "id": 1
+    }
+  },
+  "subjects": {
+    "new": {
+      "name": "Maserati Pietrzak",
+      "localization": "Bocheńskiego 109, 40-816 Katowice"
+    },
+    "existing": {
+      "name": "sgu",
+      "localization": "Świętochłowicka 14, 41-909 Bytom",
+      "creatorId": 2,
+      "id": 2
+    },
+    "existing2": {
+      "name": "Shop KFD",
+      "localization": "Chorzowska 107, 40-101 Katowice",
+      "creatorId": 1,
+      "id": 1
+    }
+  }
+}

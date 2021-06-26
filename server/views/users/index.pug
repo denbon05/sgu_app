@@ -1,0 +1,22 @@
+extends ../layouts/application.pug
+
+block header 
+  = t('views.users.title')
+
+block content
+  a.nav-link(href=route('newUser'))= t('views.users.create')
+  table.table.table-striped
+    thead
+      tr
+        th= t('views.users.id')
+        th= t('views.users.nickname')
+        th= t('views.users.email')
+        th= t('views.users.actions')
+    tbody
+      each user in users
+        tr
+          td= user.id
+          td= user.nickname
+          td= user.email
+          td.d-md-flex
+            +buttonTo(route('deleteUser', { id: user.id }), 'delete')(value=t('views.manage.delete') class='btn-link btn')

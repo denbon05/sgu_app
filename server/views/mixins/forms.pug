@@ -1,0 +1,45 @@
+- const getInputName = (property) => `data[${property}]`
+- const getInputId = (property) => `data_${property}`
+- const getLengthCount = (err) => (err.message.match(/\d+/) && err.message.match(/\d+/)[0]) || ''
+
+mixin formFor(entity = null)
+  form&attributes(attributes)
+    block
+
+mixin input(entity, propertyName, errors = {})
+  - propertyErrors = _.get(errors, propertyName)
+  - classLine = 'form-control' + (!errors[propertyName] ? '' : ' is-invalid')
+  - inputId = getInputId(propertyName)
+  - enitityName = entity.constructor.name.toLowerCase()
+  - log('entity %O', entity)
+  - log('propertyName %O', propertyName)
+  .form-group(class=(errors[propertyName] && 'has-danger'))
+    label(
+      for= inputId
+    )= t(`views.form.${enitityName}s.${propertyName}`)
+    input(
+      id= inputId
+      name=getInputName(propertyName)
+      class=classLine
+      value=_.get(entity, propertyName, '')
+    )&attributes(attributes)
+    if !_.isEmpty(propertyErrors)
+      .invalid-feedback= propertyErrors.map((err) => t(`errors.${err.keyword}`, { count: getLengthCount(err) })).join('. ')
+
+mixin submit(form = null)
+  .form-group
+    input(class='btn btn-primary' type='submit')&attributes(attributes)
+
+mixin buttonTo(action, method)
+  form(action=action, method="post")
+    input(name="_method" type="hidden" value=method)
+    input(type='submit')&attributes(attributes)
+
+mixin checkbox(entity, propertyName)
+  - classLine = 'form-check-input'
+  - inputId = getInputId(propertyName)
+  .form-group.form-check.d-flex.flex-row.px-3.ml-2
+    label.form-check-label(for=inputId)= t(`views.form.users.${propertyName}`)
+    input.form-check-input(class=classLine id=inputId type='checkbox' name=propertyName)
+
+

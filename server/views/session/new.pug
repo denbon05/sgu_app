@@ -1,0 +1,15 @@
+extends ../layouts/application.pug
+
+block header
+  .mt-4.mb-2
+    = t('views.session.new.title')
+
+block content
+  +formFor()(action=route('session') method='post')
+    +input(user, 'nickname', errors)(type="text")
+    +input(user, 'password', errors)(type="text")
+    +input(user, 'email', errors)(type="text")
+    +submit(user)(value=t('views.session.signIn'))
+      //- .d-flex.flex-row.p-2
+      //-   span= t('views.session.firstTime')
+      //-   a.nav-link(href=route('newUser')).p-0.ml-2= t('views.session.createAccount')
