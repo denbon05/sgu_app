@@ -66,7 +66,7 @@ describe('users CRUD', () => {
         data: newUserData,
       },
     });
-    expect(response.statusCode).toBe(200);
+    expect(response.statusCode).toBe(302);
 
     const expected = {
       ..._.omit(newUserData, 'password'),

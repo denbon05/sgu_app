@@ -30,7 +30,7 @@ export default (app) => {
         logApp('Created user in db %O', user);
         await app.objection.models.user.query().insert(user);
         req.flash('info', i18next.t('flash.users.create.success'));
-        reply.render('welcome/index', user);
+        reply.redirect(app.reverse('users'));
       } catch (err) {
         logApp('post error %O', err);
         const user = new app.objection.models.user().$set(req.body.data);
