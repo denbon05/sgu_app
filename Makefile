@@ -3,6 +3,9 @@ install: install-deps build
 install-deps:
 	npm install
 
+start:
+	heroku local -f Procfile
+
 start-backend sb:
 	DEBUG=app,app:* DEBUG_COLORS=true npx nodemon --exec npx babel-node server/bin/server.js
 
@@ -29,5 +32,8 @@ fix:
 
 seed-db:
 	npm run seed-db
+
+deploy:
+	git push heroku HEAD:master
 
 .PHONY: test start
