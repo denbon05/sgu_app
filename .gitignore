@@ -3,3 +3,4 @@ dist
 coverage
 secret-key
 *logs*
+database.sqlite

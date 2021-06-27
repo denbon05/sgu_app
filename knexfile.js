@@ -27,7 +27,7 @@ module.exports = {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       port: 5432,
-      host: 'ec2-54-247-158-179.eu-west-1.compute.amazonaws.com',
+      host: 'ec2-34-254-69-72.eu-west-1.compute.amazonaws.com',
       ssl: {
         rejectUnauthorized: false,
       },
