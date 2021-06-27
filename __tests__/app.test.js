@@ -30,7 +30,7 @@ describe('main paths', () => {
     expect(res.statusCode).toBe(302);
   });
 
-  it('GET 404', async () => {
+  it('GET /wrong-path', async () => {
     const res = await app.inject({
       method: 'GET',
       url: '/wrong-path',

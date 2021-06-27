@@ -11,8 +11,8 @@ mixin input(entity, propertyName, errors = {})
   - classLine = 'form-control' + (!errors[propertyName] ? '' : ' is-invalid')
   - inputId = getInputId(propertyName)
   - enitityName = entity.constructor.name.toLowerCase()
-  - log('entity %O', entity)
-  - log('propertyName %O', propertyName)
+  //- - log('entity %O', entity)
+  //- - log('propertyName %O', propertyName)
   .form-group(class=(errors[propertyName] && 'has-danger'))
     label(
       for= inputId
@@ -24,7 +24,8 @@ mixin input(entity, propertyName, errors = {})
       value=_.get(entity, propertyName, '')
     )&attributes(attributes)
     if !_.isEmpty(propertyErrors)
-      .invalid-feedback= propertyErrors.map((err) => t(`errors.${err.keyword}`, { count: getLengthCount(err) })).join('. ')
+      - propertyErrors.forEach((err) => -log('err %O', err))
+      .invalid-feedback= propertyErrors.map((err) => err.keyword ? t(`errors.${err.keyword}`, { count: getLengthCount(err) }) : err.message).join('. ')
 
 mixin submit(form = null)
   .form-group

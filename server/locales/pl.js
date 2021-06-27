@@ -15,6 +15,7 @@ export default {
       session: {
         create: {
           success: 'Jesteś zalogowany',
+          error: 'Nieprawidłowy e-mail lub hasło',
         },
         delete: {
           success: 'Jesteś wylogowany',
@@ -92,6 +93,9 @@ export default {
     errors: {
       minLength: 'Minimalna liczba znaków {{count}}',
       format: 'Nieprawidłowy format',
+      requests: {
+        404: 'Strona nie znaleziona',
+      },
     },
   },
 };

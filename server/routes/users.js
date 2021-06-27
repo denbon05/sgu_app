@@ -8,13 +8,20 @@ const logApp = debug('app:routes:users');
 export default (app) => {
   app
     .get('/users', { preValidation: app.authenticate }, async (req, reply) => {
-      logApp('req.user.isAdmin %O', req.user.isAdmin);
+      // logApp('app.authenticate %O', app.authenticate('permission'));
+      logApp('req.user.isAdmin %O', req.user.isAdmin); // passport.initialize() plugin not in use
       if (req.user.isAdmin) {
         const users = await app.objection.models.user.query();
         logApp('GET users users %O', users);
         reply.render('users/index', { users });
       } else reply.redirect(app.reverse('root'));
       return reply;
+
+      // logApp('GET users req.user.isAdmin %O', req.user.isAdmin);
+      // const users = await app.objection.models.user.query();
+      // // logApp('GET users users %O', users);
+      // reply.render('users/index', { users });
+      // return reply;
     })
 
     .get('/users/new', { name: 'newUser', preValidation: app.authenticate }, (req, reply) => {
@@ -45,6 +52,7 @@ export default (app) => {
       name: 'deleteUser',
       preValidation: app.authenticate,
     }, async (req, reply) => {
+      logApp('DELETE USER');
       try {
         if (req.user.id === req.params.id) req.logOut();
         await app.objection.models.user.query().deleteById(req.params.id);

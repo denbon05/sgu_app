@@ -25,6 +25,7 @@ import getHelpers from './helpers/index.js';
 import knexConfig from '../knexfile.js';
 import models from './models/index.js';
 import FormStrategy from './lib/passportStrategies/FormStrategy.js';
+import PermissionStrategy from './lib/passportStrategies/PermissionStrategy.js';
 
 const logApp = debug('app');
 
@@ -89,6 +90,7 @@ const registerPlugins = (app) => {
   );
   fastifyPassport.registerUserSerializer((user) => Promise.resolve(user));
   fastifyPassport.use(new FormStrategy('form', app));
+  fastifyPassport.use(new PermissionStrategy('permission'));
   app.register(fastifyPassport.initialize());
   app.register(fastifyPassport.secureSession());
   app.decorate('fp', fastifyPassport);
@@ -100,6 +102,29 @@ const registerPlugins = (app) => {
     },
   // @ts-ignore
   )(...args));
+  // logApp('fastifyPassport %O', fastifyPassport) // ! not working
+  // app.decorate('permission')
+  // app.decorate('accessCheck', (req) => {
+  //   logApp(
+  //     'fastifyPassport %O',
+  //     fastifyPassport.authenticate(
+  //       'permission',
+  //       {
+  //         failureRedirect: app.reverse('root'),
+  //         failureFlash: i18next.t('flash.authError'),
+  //       },
+  //     // @ts-ignore
+  //     )(req),
+  //   )
+  //   return fastifyPassport.authenticate(
+  //     'permission',
+  //     {
+  //       failureRedirect: app.reverse('root'),
+  //       failureFlash: i18next.t('flash.authError'),
+  //     },
+  //   // @ts-ignore
+  //   )(req)
+  // })
 
   app.register(fastifyMethodOverride);
   app.register(fastifyObjectionjs, {

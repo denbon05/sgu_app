@@ -1,9 +1,10 @@
-# sgu_app
+# <a href="https://sgu-app.herokuapp.com/"  target="_blank">sgu_app</a>
 
 ## Description
 <p>Template for Sign Up and managing users</p>
 
 ### Linter and test-coverage status:
+[![Build Status](https://travis-ci.com/denbon05/sgu_app.svg?branch=main)](https://travis-ci.com/denbon05/sgu_app)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5eb224ac9d9acfee7dd9/maintainability)](https://codeclimate.com/github/denbon05/sgu_app/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5eb224ac9d9acfee7dd9/test_coverage)](https://codeclimate.com/github/denbon05/sgu_app/test_coverage)
 
