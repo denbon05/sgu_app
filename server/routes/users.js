@@ -7,30 +7,20 @@ const logApp = debug('app:routes:users');
 
 export default (app) => {
   app
-    .get('/users', { preValidation: app.authenticate }, async (req, reply) => {
-      // logApp('app.authenticate %O', app.authenticate('permission'));
-      logApp('req.user.isAdmin %O', req.user.isAdmin); // passport.initialize() plugin not in use
-      if (req.user.isAdmin) {
-        const users = await app.objection.models.user.query();
-        logApp('GET users users %O', users);
-        reply.render('users/index', { users });
-      } else reply.redirect(app.reverse('root'));
+    .get('/users', { preValidation: app.authorize }, async (req, reply) => {
+      logApp('GET users req.user.isAdmin %O', req.user.isAdmin);
+      const users = await app.objection.models.user.query();
+      reply.render('users/index', { users });
       return reply;
-
-      // logApp('GET users req.user.isAdmin %O', req.user.isAdmin);
-      // const users = await app.objection.models.user.query();
-      // // logApp('GET users users %O', users);
-      // reply.render('users/index', { users });
-      // return reply;
     })
 
-    .get('/users/new', { name: 'newUser', preValidation: app.authenticate }, (req, reply) => {
+    .get('/users/new', { name: 'newUser', preValidation: app.authorize }, (req, reply) => {
       logApp('GET users/new');
       const user = new app.objection.models.user();
       reply.render('users/new', { user });
     })
 
-    .post('/users', { name: 'users', preValidation: app.authenticate }, async (req, reply) => {
+    .post('/users', { name: 'users', preValidation: app.authorize }, async (req, reply) => {
       try {
         logApp('POST /users req.body.data %O', req.body.data);
         const user = await app.objection.models.user.fromJson(req.body.data);
@@ -50,7 +40,7 @@ export default (app) => {
 
     .delete('/users/:id', {
       name: 'deleteUser',
-      preValidation: app.authenticate,
+      preValidation: app.authorize,
     }, async (req, reply) => {
       logApp('DELETE USER');
       try {

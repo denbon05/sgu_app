@@ -102,29 +102,14 @@ const registerPlugins = (app) => {
     },
   // @ts-ignore
   )(...args));
-  // logApp('fastifyPassport %O', fastifyPassport) // ! not working
-  // app.decorate('permission')
-  // app.decorate('accessCheck', (req) => {
-  //   logApp(
-  //     'fastifyPassport %O',
-  //     fastifyPassport.authenticate(
-  //       'permission',
-  //       {
-  //         failureRedirect: app.reverse('root'),
-  //         failureFlash: i18next.t('flash.authError'),
-  //       },
-  //     // @ts-ignore
-  //     )(req),
-  //   )
-  //   return fastifyPassport.authenticate(
-  //     'permission',
-  //     {
-  //       failureRedirect: app.reverse('root'),
-  //       failureFlash: i18next.t('flash.authError'),
-  //     },
-  //   // @ts-ignore
-  //   )(req)
-  // })
+  app.decorate('authorize', (...args) => fastifyPassport.authenticate(
+    'permission',
+    {
+      failureRedirect: app.reverse('root'),
+      failureFlash: i18next.t('flash.permissionError'),
+    },
+  // @ts-ignore
+  )(...args));
 
   app.register(fastifyMethodOverride);
   app.register(fastifyObjectionjs, {

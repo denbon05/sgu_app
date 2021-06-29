@@ -16,7 +16,7 @@ cd sgu_app
 make install
 make start-backend
 make start-frontend
-// in browser follow http://0.0.0.0:3000/
+// in browser follow http://0.0.0.0:5000/
 make seed-db // if you removed the administrator
 </pre>
 

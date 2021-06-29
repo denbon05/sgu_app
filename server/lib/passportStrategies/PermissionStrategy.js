@@ -1,7 +1,7 @@
 import { Strategy } from 'fastify-passport';
 import debug from 'debug';
 
-const logApp = debug('app:AdminStrategy');
+const logApp = debug('app:PermissionStrategy');
 
 export default class PermissionStrategy extends Strategy {
   constructor(name) {
@@ -11,11 +11,7 @@ export default class PermissionStrategy extends Strategy {
 
   async authenticate(request) {
     logApp('is Used');
-    if (request.user && request.user.isAdmin()) {
-      // return this.pass();
-      return this.success();
-    }
-
+    if (request.user && request.user.isAdmin) return this.pass();
     return this.fail();
   }
 }

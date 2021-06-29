@@ -27,6 +27,7 @@ export default {
           error: 'Nie udało się stworzyć obiektu',
         },
       },
+      permissionError: 'Brak dostępu',
     },
 
     navBar: {

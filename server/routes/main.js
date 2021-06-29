@@ -21,9 +21,4 @@ export default (app) => {
       }
       return reply;
     });
-
-  // .setNotFoundHandler((req, reply) => {
-  //   reply.render('errors/404', req.user);
-  //   return reply;
-  // });
 };
